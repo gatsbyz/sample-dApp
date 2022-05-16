@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "ethereumjs-testrpc": "^6.0.3",
+    "ganache-cli": "^6.12.2",
+    "solc": "^0.6.4",
+    "web3": "^1.7.3"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  },
+  "scripts": {
+    "start": "npx tsc -p tsconfig.json && node dist/index.js"
+  }
+}
