@@ -1,5 +1,5 @@
 // const fs = require("fs");
-const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
 
 let account;
 web3.eth.getAccounts().then((f) => {
@@ -11,7 +11,7 @@ abi = JSON.parse(
 );
 
 const contract = new web3.eth.Contract(abi);
-contract.options.address = "0x71789831d83d4C8325b324eA9B5fFB27525480b5";
+contract.options.address = "0xbbc482Bd4B124F9604B438079a331fB4e16EAC23";
 
 const candidates = {
   Nicole: "candidate-1",
@@ -21,8 +21,8 @@ const candidates = {
 
 function voteForCandidate(candidate) {
   const candidateName = $("#candidate").val();
-  console.log(candidateName);
 
+  console.log("account", account);
   contract.methods
     .voteForCandidate(web3.utils.asciiToHex(candidateName))
     .send({ from: account })
@@ -48,6 +48,9 @@ $(document).ready(function () {
       .call()
       .then((f) => {
         $("#" + candidates[name]).html(f);
+      })
+      .catch((e) => {
+        throw Error(e);
       });
   }
 });
